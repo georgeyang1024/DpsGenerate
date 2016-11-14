@@ -21,6 +21,12 @@ appendXValue(path, 指定X值)
 
 ```
 
-3. 开始允许
-两种方法可以运行，1：传统的javac方法执行DpTransUtil，2:进入DpsGenerate目录，执行gradle runJava
+3. 开始执行
+
+两种方法可以运行
+
+```
+1:传统的javac方法执行DpTransUtil
+2:进入DpsGenerate目录，执行gradle runJava
+```
 
