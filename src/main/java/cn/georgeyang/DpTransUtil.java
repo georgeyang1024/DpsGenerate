@@ -13,11 +13,13 @@ import java.util.regex.Pattern;
  */
 
 public class DpTransUtil {
-    private final static String TEMPLATE = "    <dimen name=\"x{0}\">{1}dp</dimen>\n";
+    private final static String TEMPLATE =  "   <dimen name=\"x{0}\">{1}dp</dimen>\n";
+    private final static String TEMPLATEF = "   <dimen name=\"f{0}\">{1}sp</dimen>\n";
     private final static String TEMPLATEP = "   <dimen name=\"p{0}\">{1}dp</dimen>\n";
     private final static String TEMPLATE_DIR = "values-w{0}dp";
     private final static String FILENAME = "dps.xml";
     private final static String ENDCHAR = "</resources>";
+
 
     /**
      * 批量生成xml
@@ -135,9 +137,15 @@ public class DpTransUtil {
         return false;
     }
 
+    /**
+     * 生成xml
+     * @param xmlFile
+     * @param maxWidth
+     * @param proportion 比例
+     * @return
+     */
     private static boolean generateXmlFile(File xmlFile, int maxWidth, float proportion) {
         StringBuffer output = new StringBuffer();
-//        output.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
         output.append("<resources>\n");
         for (int i = 1; i <= 100; i++) {
             float realWidth = (maxWidth * proportion * i) / 100f;
@@ -147,6 +155,7 @@ public class DpTransUtil {
         for (int i = 1; i <= maxWidth; i++) {
             float realWidth = (int) ((i * proportion) * 100) / 100f;
             output.append(TEMPLATE.replace("{0}", i + "").replace("{1}", realWidth + ""));
+            output.append(TEMPLATEF.replace("{0}", i + "").replace("{1}", realWidth + ""));
         }
         output.append("</resources>");
 
@@ -183,10 +192,35 @@ public class DpTransUtil {
 
 
     public static void main(String[] args) {
-       String path = "./res";
-        System.out.println("生成结果 0:" + generate(path, 750, 320, 520, 20));
-        System.out.println("生成结果 1:" + generate(path, 750, 120));
+        String path = "./res";
+        System.out.println("生成结果 0:" + generate(path, 720, 320, 520, 10));
+        System.out.println("生成结果 1:" + generate(path, 720, 120));
         System.out.println("生成结果 2:" + appendPercent(path, 200));
         System.out.println("生成结果 3:" + appendXValue(path, 800));
+        System.out.println("生成结果 4:" + appendXValue(path, 1003));
+        System.out.println("生成结果 4:" + appendXValue(path, 778));
+        System.out.println("生成结果 5:" + appendXValue(path, 755));
+    }
+
+
+
+    /**
+     * 传统算法，如果720的设计,2px=1sp(备用方法)
+     * @param dir
+     * @return
+     */
+    public static boolean generateSps(String dir) {
+        File fileDir = new File(dir + File.separator + "values");
+        fileDir.mkdirs();
+        File spFile = new File(fileDir.getAbsolutePath(), "sps.xml");
+        StringBuffer output = new StringBuffer();
+        output.append("<resources>\n");
+        for (int i = 1; i <= 720; i++) {
+            String string = String.format("   <dimen name=\"f%d\">%ssp</dimen>\n",new Object[]{i,(i*10.0/20) + ""});
+            output.append(string);
+        }
+        output.append("</resources>");
+
+        return writeToFile(spFile, output.toString());
     }
 }
