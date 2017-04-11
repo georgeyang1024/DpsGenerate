@@ -30,7 +30,7 @@ appendXValue(path, 指定X值)
 2:进入DpsGenerate目录，执行gradle runJava
 ```
 
-#使用适配
+# 使用适配
 以UI效果图720*1280为例，实际上，高度是可以忽略的，因为像素点是正方形的，有些手机720宽度，但不是1280高度
 
 布局宽高安装ui标注写@dimen/x??
@@ -39,7 +39,7 @@ appendXValue(path, 指定X值)
 
 文字大小使用@dimen/f?? f??的实际单位是sp，手机字体是默认的普通大小时和dp没差别，但手机字体改成偏大或偏小，就起效果了
 
-#联系我
+# 联系我
 
 georgeyang1024@gmail.com
 
