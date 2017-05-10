@@ -122,6 +122,7 @@ public class DpTransUtil {
                     float proportion = Float.valueOf(value) / Float.valueOf(key);
                     float realWidth = ((int) (px * proportion * 100)) / 100;
                     String append = TEMPLATE.replace("{0}", px + "").replace("{1}", realWidth + "");
+                    append = append.replace("x-","x_");
 
                     RandomAccessFile raf = new RandomAccessFile(currFile, "rw");
                     raf.seek(currFile.length() - ENDCHAR.length());
@@ -200,6 +201,7 @@ public class DpTransUtil {
         System.out.println("生成结果 4:" + appendXValue(path, 1003));
         System.out.println("生成结果 4:" + appendXValue(path, 778));
         System.out.println("生成结果 5:" + appendXValue(path, 755));
+        System.out.println("生成结果 6:" + appendXValue(path, -80));
     }
 
 

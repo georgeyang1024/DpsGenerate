@@ -16,7 +16,7 @@ generate(路径, UI设计图的宽度, 指定兼容的DP值)
 appendPercent(路径, 指定百分比)
 
 增加指定的X宽度对应dp值(默认1-Design宽度,如果不满足需要可以用该方法)
-appendXValue(path, 指定X值)
+appendXValue(path, 指定X值,支持负值)
 
 
 ```
@@ -33,7 +33,7 @@ appendXValue(path, 指定X值)
 # 使用适配
 以UI效果图720*1280为例，实际上，高度是可以忽略的，因为像素点是正方形的，有些手机720宽度，但不是1280高度
 
-布局宽高安装ui标注写@dimen/x??
+布局宽高安卓ui标注写@dimen/x??
 
 如果按照一定宽高比例，布局写@dimen/p?? ,p100代表沾满屏幕宽度
 
